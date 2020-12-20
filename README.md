@@ -38,4 +38,4 @@ pyinstaller --clean --onefile --icon=icon.ico pythonfile.py
 
 
 <>
-discord, passwords, browsersteal, credit cards, webhooks, python
+discord, passwords, browsersteal, credit cards, webhooks, python, chrome password stealer, browser password stealer, microsoft edge password stealer, credit card stealer, discord webhooks
