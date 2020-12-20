@@ -1,26 +1,41 @@
-# BROWSER-STEALER | UTILIZES DISCORD WEBHOOKS
+# gotcha! | browsersteal > utilizes discord webhooks
+# ![](https://img.shields.io/badge/version-1.0-lightgrey.svg)
+# features:
+---------------------------------------------------
 
-**FULLY WRITTEN** IN **PYTHON**
+>> uses discord's webhook feature > sends all of it in a .zip
 
-**browser passwords/credit card steal; utilizes discord's webhooks to send information directly to discord.**
+>> supports chromium based browsers
 
-**note**: this is poorly written, i required to write something in minimal time & this is what i got in return.
+>> supports microsoft edge
 
-**note**: the browser-stealing scripts were built using other scripts found here, on github; i do not claim credit for any of that code.
+>> steals : credit cards, passwords
 
-![browsersteal](https://media.discordapp.net/attachments/766042317202915380/783413318634176552/unknown.png?width=264&height=308)
-
-# challenge:
-
-i'm unable to run this using Python3, if you're able to create a working browsersteal & tokenlogger with their "C2" being Discord's webhook in Python3, open a request & send me the repo, i won't mind to give a star in return.
-
-it's a shock to me, the only repository that had a functioning browser-passwords/credit card stealer embed with a discord tokenlogger was "TroubleGrabber"
-
-i personally, was looking for something more simple & written in python. (easier to hide in other functioning applications)
+---------------------------------------------------
+# screenshot:
+ 
+![](https://cdn.discordapp.com/attachments/790276225947009034/790276232255766558/unknown.png)
 
 
-## PY > EXE
+# instructions:
+---------------------------------------------------
 
->cmd prompt > "cd path/where/python-file/is"
+>> replace the webhooks where needed, there's instructions inside the .py
 
->pyinstaller --clean --onefile --icon=icon.ico pythonfile.py
+>> py to exe
+
+>> drop to victim, social engineer & have them run it
+
+>> educational purposed, do not do this without consent
+
+---------------------------------------------------
+
+# PY > EXE
+
+cmd prompt > "cd path/where/python-file/is"
+
+pyinstaller --clean --onefile --icon=icon.ico pythonfile.py
+
+
+<>
+discord, passwords, browsersteal, credit cards, webhooks, python
