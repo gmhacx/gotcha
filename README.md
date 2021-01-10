@@ -1,7 +1,7 @@
 ![](https://img.shields.io/badge/version-1.0-lightgrey.svg)
   <h3 align="center">gotcha! | password & discord token retrieval</h3>
   <p align="center">
-    victim's passwords & discord token's > all data sent to your Discord webhook of choice.
+    victim's passwords & discord token > all data sent to your Discord webhook of choice.
   
 ---------------------------------------------------
 >> utilizes discord's webhooks > sends passwords in a .zip, and token in chat
