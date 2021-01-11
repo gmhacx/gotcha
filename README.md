@@ -44,6 +44,8 @@ drop to victim, and wait for them to run : the script is ideal to be placed into
 
 happy social engineering ! disclaimer: educational purposed
 
+if you appreciate my work, pass a follow/star 
+
 ### PY > EXE :
 
 cmd prompt > "cd path/where/python-file/is"
