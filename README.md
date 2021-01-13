@@ -8,8 +8,6 @@
 
 >> supports majority of chromium based browsers, is definitely open to improvement : (if you know how to do so, open a pull request with your code!)
 
->> basically : 100% FUD 
-
 >> steals : Discord Token, Browser Passwords, Windows Product Key, Credit-cards, etc.
 
 >> expert programmers: i give you permission to re-write this : if you can make everything be sent in one single, neat embed. 👍
@@ -56,7 +54,6 @@ cmd prompt > "cd path/where/python-file/is"
 
 ### GENERAL :
 if you're having any issues, feel free to look at my main page and find my current Discord: here, you can add me & ask for any help you may need.
-
 
 <> extra <>
 
