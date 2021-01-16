@@ -1,49 +1,64 @@
 ![](https://img.shields.io/badge/version-1.0-lightgrey.svg)
-  <h3 align="center">gotcha! | password & discord token retrieval/stealer</h3>
+  <h3 align="center">gotcha! | passwords, credit cards, product key, and Discord token stealer.</h3>
   <p align="center">
-    steal victim's passwords & discord token > all collected data sent to your Discord webhook of choice.
+    steal victim's passwords, discord token & more > all collected data sent to your Discord webhook of choice.
   
+ # [ VERSION 1 ] ; 'gotcha.py'
 ---------------------------------------------------
->> utilizes Discord's webhooks > sends passwords in a .zip, token, and windows product key in chat.
+'gotcha.py': a less-advanced version of 'gotchav2.py'
+> utlizes Discord's webhooks, sends passwords, token, product key, all in chat (seperately)
+> supports mainly chrome, can't garauntee most chromium browsers, ( if you know how to add support for this, please open a PR with your code! )
+> steals : Discord token, Chrome passwords, Windows Product Key, Credit Cards, etc.
+>> mostly FUD. 👍
 
->> supports majority of chromium based browsers, is definitely open to improvement : (if you know how to do so, open a pull request with your code!)
-
->> steals : Discord Token, Browser Passwords, Windows Product Key, Credit-cards, etc.
-
->> expert programmers: i give you permission to re-write this : if you can make everything be sent in one single, neat embed. 👍
-
----------------------------------------------------
-## SCREENSHOT :
-![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
-
-### USING :
-* [PYTHON]
-
-### INSTRUCTIONS :
-the way i've setup my webhook is an interesting system, but it's fairly easy to understand:
+INSTRUCTIONS FOR '[ VERSION 1 ]
 
 "whID" = Webhook ID
+"whAT" = Webhook Token/Auth Token
+example : (1) = whID, (2) = whAT.
+https//discordcom/api/webhooks/(**1**)/(**2**)
+you'll want to replace these with your own Discord webhook variables, once done : your script is fully built.
 
-"whAT" = Webhook Token/Authorization Token
+drop to victim/friend & wait for them to run! : educational purposed.
 
-these are the two most important variables in the script, in-fact they're the only ones you'll have to configure.
+happy social engineering<3.
 
-example: https//discordcom/api/webhooks/**00000000**/**qwertyuiop**
+[ VERSION 1 SCREENSHOT ] ;
+![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
+---------------------------------------------------
 
-the variables are highlighted, those are the one's youll want to find in your own webhook.
+ # [ VERSION 2 ] ; 'gotchav2.py'
+---------------------------------------------------
+'gotchav2.py' : the more advanced, efficient, and most effective version of gotcha : this is the re-write of it.
+> utilizes Discord's webhooks, sends all collected data in a **single** embed : in a neat format.
+> steals : same data as version 1 + victim's IP address.
+> neat code, requires a little more setup. 👍
 
-once you've found those variables, carefully remove "webhook-id" & "webhook-token" & replace them with your own,
+**PRE-REQUISITES**: 
+Imgur API Key, Discord Webhook
 
-once that's complete > the script is fully built! 
 
-you'll either want to pack the script with pyarmor, & then exe it > or .exe it, either one.
+INSTRUCTIONS FOR '[ VERSION 2 ]
 
-drop to victim, and wait for them to run : the script is ideal to be placed into other applications, much like a "Trojan Horse" .
+"whID" = Webhook ID
+"whAT" = Webhook Token/Auth Token
+example : (1) = whID, (2) = whAT.
+https//discordcom/api/webhooks/(**1**)/(**2**)
+you'll want to replace these with your own Discord webhook variables
 
-happy social engineering ! disclaimer: educational purposed
+next, you'll want to create an Imgur account & gain API access : https://api.imgur.com/oauth2/addclient
 
-if you appreciate my work, pass a follow/star 
+once done so, find the image-upload portion of my code > replace '#CLIENT-ID HERE', & '#CLIENT-SECRET HERE' with your own.
 
+once that's complete, the script is fully built.
+
+drop to victim/friend & wait for them to run! : educational purposed.
+
+happy social engineering<3.
+
+[ VERSION 2 SCREENSHOT ] ;
+![](https://cdn.discordapp.com/attachments/799822588296691752/800068801412202516/Capture.PNG)
+---------------------------------------------------
 ### PY > EXE :
 
 cmd prompt > "cd path/where/python-file/is"
