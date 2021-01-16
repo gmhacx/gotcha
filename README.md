@@ -21,6 +21,7 @@ you'll want to replace these with your own Discord webhook variables, once done 
 drop to victim/friend & wait for them to run! : **educational purposed.**
 
 happy social engineering<3.
+
 ![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
 ---------------------------------------------------
 
@@ -51,6 +52,7 @@ once that's complete, the script is fully built.
 
 drop to victim/friend & wait for them to run! : educational purposed.
 happy social engineering<3.
+
 ![](https://cdn.discordapp.com/attachments/799822588296691752/800068801412202516/Capture.PNG)
 ---------------------------------------------------
 ### PY > EXE :
