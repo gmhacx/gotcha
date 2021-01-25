@@ -1,8 +1,10 @@
   <h3 align="center">gotcha | simple credentials extraction script, written in Python.</h3>
   <p align="center">
     steal victim's online credentials, discord token, cookies, windows product key & more => all data to your Discord webhook of choice.
+  
+#### scroll down to the bottom to view the latest version, (3) : this is the one i recommend most.
 
-# scroll down to the bottom to view the latest version, (3) : this is the one i recommend most.
+
 ## version 1 : "`gotcha.py`"
 
 utilizes Discord's webhooks : sends victim's credentials, product key, and token. (indiviually)
