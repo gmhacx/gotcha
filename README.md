@@ -1,70 +1,46 @@
-![](https://img.shields.io/badge/version-1.0-lightgrey.svg)
-  <h3 align="center">gotcha! | passwords, credit cards, product key, and Discord token stealer.</h3>
+  <h3 align="center">gotcha | simple credentials extraction script, written in Python.</h3>
   <p align="center">
-    steal victim's passwords, discord token & more > all collected data sent to your Discord webhook of choice.
+    steal victim's online credentials, discord token, cookies, windows product key & more => all data to your Discord webhook of choice.
   
- # [ VERSION 1 ] > 'gotcha.py'
----------------------------------------------------
-'gotcha.py': a less-advanced version of 'gotchav2.py'
-> utlizes Discord's webhooks, sends passwords, token, product key, all in chat (seperately)
-> supports mainly chrome, can't garauntee most chromium browsers, ( if you know how to add support for this, please open a PR with your code! )
-> steals : Discord token, Chrome passwords, Windows Product Key, Credit Cards, etc.
+# Version 1 : "`gotcha.py`"
 
-**INSTRUCTIONS FOR '[ VERSION 1 ]'**
+Utilizes Discord's webhooks : sends victim's credentials, product key, and token. (indiviually)
+| --- |
+Supports Chrome, and Microsoft Edge : can't garauntee its functionality . ( if you understand, open a PR with your code )|
+| --- |
+## Instructions => Version 1
 
-"whID" = Webhook ID
-"whAT" = Webhook Token/Auth Token
-example : (1) = whID, (2) = whAT.
-https//discordcom/api/webhooks/(**1**)/(**2**)
-you'll want to replace these with your own Discord webhook variables, once done : your script is fully built.
+1. Create a Discord webhook, for more information : https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
+2. Find the following variables in, "`gotcha.py`": "whID", "whAT".
+"whID" = `Webhook ID`
+"whAT" = `Webhook Token/Auth Token`
+3. Replace these variables with the following found in your Discord webhook.
+`https//discord.com/api/webhooks/`(**1**)`/`(**2**)
+(**1**) = "whID"
+(**2** = "whAT"
+4. Save, now you're set. If you'd like : you can .exe the script using Pyinstaller, https://pypi.org/project/pyinstaller/
+5. Drop to your friend, and have them run it.
 
-drop to victim/friend & wait for them to run! : **educational purposed.**
-
-happy social engineering<3.
-
+### Example => "`gotcha.py`"
 ![](https://cdn.discordapp.com/attachments/796598097986715668/797299038536990760/example.png)
 ---------------------------------------------------
 
- # [ VERSION 2 ] > 'gotchav2.py'
----------------------------------------------------
-**'gotchav2.py' : the more advanced, efficient, and most effective version of gotcha : this is the re-write of it.**
-> utilizes Discord's webhooks, sends all collected data in a **single** embed : in a neat format.
-> steals : same data as version 1 + victim's IP address.
-> neat code, requires a little more setup. 👍
+# Version 2 : "`gotchav2.py`"
+Same functionality as V1 + IP Address, alot more efficient & with embedding.
+| --- |
+All data sent in a neat format, requires a little more effort for setup.
+| --- |
 
-**PRE-REQUISITES**: 
-Imgur API Key, Discord Webhook
+## Instructions => Version 2
 
+1. Follow same steps as Version 1, stop at Step 3.
+2. Create an Imgur account, and gain API access : https://api.imgur.com/oauth2/addclient, for more docu. => https://api.imgur.com/
+3. One complete, find the function in "`gotchav2.py`": "upload".
+4. Replace `CLIENT-ID-HERE`, and `CLIENT-SECRET-HERE`: with your Imgur API details, "Client ID", and "Client Secret"
+5. Begin from Step 4 in Version 1.
 
-INSTRUCTIONS FOR '[ VERSION 2 ]
-
-"whID" = Webhook ID
-"whAT" = Webhook Token/Auth Token
-example : (1) = whID, (2) = whAT.
-https//discordcom/api/webhooks/(**1**)/(**2**)
-you'll want to replace these with your own Discord webhook variables
-
-next, you'll want to create an Imgur account & gain API access : https://api.imgur.com/oauth2/addclient
-
-once done so, find the image-upload portion of my code > replace '#CLIENT-ID HERE', & '#CLIENT-SECRET HERE' with your own.
-
-once that's complete, the script is fully built.
-
-drop to victim/friend & wait for them to run! : educational purposed.
-happy social engineering<3.
-
+### Example => "`gotchav2.py`"
 ![](https://cdn.discordapp.com/attachments/799822588296691752/800068801412202516/Capture.PNG)
----------------------------------------------------
-### PY > EXE :
-cmd prompt > "cd path/where/python-file/is"
 
-```pip install pyinstaller```
-
-```pyinstaller --clean --onefile --i icon.ico file.py```
-
-### GENERAL :
-if you're having any issues, feel free to look at my main page and find my current Discord: here, you can add me & ask for any help you may need.
-
-<> extra <>
-
-Passwords Stealer, Passwords Extraction, Discord Passwords, Passwords Steal, Chrome Stealer, Credit Cards Stealer, Discord Webhook Stealer, Windows Product Key Stealer, Browser Steal, Password Steal, Steal All Passwords, Bank Steal, Discord Stealer, Python, Discord Passwords Steal
+## Contact Me : 
+View my GitHub profile for my Discord, here you can add me for any questions/errors you may want to ask/resolve.
